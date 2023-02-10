@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>avtr.dev</title>
+        <style>
+            html, body {
+                font-family: sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            nav {
+                background-color: #876969;
+                color: #fff;
+                padding: 1em;
+            }
+            nav ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: space-between;
+            }
+            nav li {
+                display: inline-block;
+            }
+            nav a {
+                color: #fff;
+                text-decoration: none;
+            }
+            nav a:hover {
+                text-decoration: underline;
+            }
+            main {
+                max-width: 35em;
+                margin: auto;
+            }
+            input {
+                padding: 0.5em;
+                border: 1px solid #ccc;
+                border-radius: 0.25em;
+                font-size: 1em;
+                width: 100%;
+            }
+            input[type="submit"] {
+                background-color: #876969;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+            pre {
+                background-color: #eee;
+                padding: 1em;
+                border-radius: 0.25em;
+                margin: 1em 0;
+            }
+            footer {
+                text-align: center;
+                padding: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="/">avtr.dev</a></li>
+                <li><a href="https://jamesg.blog">Made by capjamesg</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h1>avtr.dev</h1>
+            <p>avtr.dev is a simple service that allows you to retrieve an image avatar representative of a URL.</p>
+            <form action="/" method="GET">
+                <input type="text" name="url" placeholder="URL"><br><br>
+                <input type="submit" value="Retrieve Image">
+            </form>
+            <h2>API Documentation</h2>
+            <h3>Retrieve an Avatar</h3>
+            <p>Retrieve an avatar associated with a URL.</p>
+            <pre>
+                <code>
+GET /?url={url}
+                </code>
+            </pre>
+            <p>Example:</p>
+            <pre>
+                <code>
+GET /?url=https://jamesg.blog
+                </code>
+            </pre>
+            <p>Returns:</p>
+            <pre>
+                <code>
+{
+    "avatar": "https://jamesg.blog/assets/coffeeshop.jpeg"
+}
+                </code>
+            </pre>
+            <footer>
+                <p>avtr.dev was made with ❤️, 🧇 and ☕️ by <a href="https://jamesg.blog">capjamesg</a></p>
+            </footer>
+        </main>
+</body>

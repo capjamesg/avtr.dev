@@ -13,6 +13,8 @@ use URI;
 
 use Web::Microformats2;
 
+use Path::Tiny;
+
 my $avatar_checks = ["icon", "shortcut icon", "apple-touch-icon", "apple-touch-icon-precomposed"];
 
 sub canonicalize {
@@ -208,6 +210,14 @@ get '/' => sub {
     my $url = $c->param('url');
     my $email = $c->param('email');
     my $query = $c->param('query');
+
+    if (!$url) {
+        my $index = path('templates/index.html')->slurp;
+
+        $c->render(text => $index);
+        return;
+    }
+
     my $endpoints = discover_endpoints($url, $query);
     my $avatar = get_avatar($url, $email);
 
