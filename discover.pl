@@ -210,6 +210,7 @@ get '/' => sub {
     my $url = $c->param('url');
     my $email = $c->param('email');
     my $query = $c->param('query');
+    my $return_type = $c->param('re');
 
     if (!$url) {
         my $index = path('templates/index.html')->slurp;
@@ -221,12 +222,22 @@ get '/' => sub {
     my $endpoints = discover_endpoints($url, $query);
     my $avatar = get_avatar($url, $email);
 
+    if ($return_type && $return_type eq 'img') {
+        $c->redirect_to($avatar);
+        return;
+    }
+
     my $response = {
         # endpoints => $endpoints,
         avatar => $avatar
     };
 
     $c->render(json => $response);
+};
+
+any '/*' => sub {
+    my $c = shift;
+    $c->render(text => 'Not found', status => 404);
 };
 
 app->start;

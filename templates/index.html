@@ -74,6 +74,7 @@
             <p>avtr.dev is a simple service that allows you to retrieve an image avatar representative of a URL.</p>
             <form action="/" method="GET">
                 <input type="text" name="url" placeholder="URL"><br><br>
+                <input type="hidden" name="re" value="img">
                 <input type="submit" value="Retrieve Image">
             </form>
             <h2>API Documentation</h2>
@@ -98,6 +99,7 @@ GET /?url=https://jamesg.blog
 }
                 </code>
             </pre>
+            <p>To be redirected to a raw image if one is found, add <code>&re=img</code> as a query parameter.</p>
             <footer>
                 <p>avtr.dev was made with ❤️, 🧇 and ☕️ by <a href="https://jamesg.blog">capjamesg</a></p>
             </footer>
