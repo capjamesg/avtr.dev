@@ -7,7 +7,7 @@ A service to retrieve avatars given a URL.
 To retrieve an image for a given URL, send a `GET` request to the root of the service with the `url` query parameter set to the URL you want to retrieve an avatar for.
 
 ```bash
-POST /?url=https://jamesg.blog
+GET /?url=https://jamesg.blog
 
 # Response
 {
