@@ -8,12 +8,10 @@ use Digest::MD5 qw(md5_hex);
 use LWP::UserAgent;
 use Mojo::DOM;
 
-use Mojolicious::Lite;
+use Mojolicious::Lite -signatures;
 use URI;
 
 use Web::Microformats2;
-
-use Path::Tiny;
 
 my $avatar_checks = ["icon", "shortcut icon", "apple-touch-icon", "apple-touch-icon-precomposed"];
 
@@ -128,6 +126,12 @@ sub get_h_card {
         $avatar = canonicalize($url, $avatar);
     }
 
+    if (!$avatar) {
+        $avatar = $h_card->get_property('logo');
+
+        $avatar = canonicalize($url, $avatar);
+    }
+
     return $avatar;
 }
 
@@ -213,10 +217,14 @@ get '/' => sub {
     my $return_type = $c->param('re');
 
     if (!$url) {
-        my $index = path('templates/index.html')->slurp;
+        use File::Slurp;
+        my $html = read_file('templates/index.html', binmode => ':utf8');
+        return $c->render(text => $html, format => 'html');
+    }
 
-        $c->render(text => $index);
-        return;
+    # url must have http or https
+    if ($url !~ /^https?:\/\//) {
+        $url = "http://" . $url;
     }
 
     my $endpoints = discover_endpoints($url, $query);

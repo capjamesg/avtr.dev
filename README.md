@@ -19,7 +19,7 @@ GET /?url=https://jamesg.blog
 
 avtr.dev uses the following logic to determine the avatar for a given URL:
 
-1. Checks for a h-card on the provided URL. If one is available, the avatar is set to the `photo` property of the h-card.
+1. Checks for a h-card on the provided URL. If one is available, the avatar is set to the `photo` property of the h-card. If a `photo` property is not available, the avatar is set to the `logo` property of the h-card if one is specified.
 2. Checks for a `link` tag with a `rel` attribute of, in order: `icon`, `shortcut icon`, `apple-touch-icon`, `apple-touch-icon-precomposed`. If one is available, the avatar is set to the `href` attribute of the `link` tag.
 3. Checks for a Gravatar associated with the provided URL. If one is available, the avatar is set to the Gravatar URL.
 4. Checks for a GitHub account associated with the provided URL. If one is available, the avatar is set to the GitHub avatar URL.
